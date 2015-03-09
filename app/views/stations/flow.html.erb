@@ -1,0 +1,16 @@
+Flow for Divvy station #<%= @station.divvy_id %> at <%= @station.name %>.
+
+<table>
+    <tr>
+        <th>Time</th>
+        <th>In</th>
+        <th>Out</th>
+    </tr>
+    <% (@departures.keys + @arrivals.keys).uniq.sort.each do |key| %>
+        <tr>
+            <td><%= key %></td>
+            <td><%= @arrivals[key] %></td>
+            <td><%= @departures[key] %></td>
+        </tr>
+    <% end %>
+</table>
