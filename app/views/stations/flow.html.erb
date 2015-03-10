@@ -1,18 +1,1 @@
 Flow for Divvy station #<%= @station.divvy_id %> at <%= @station.name %>.
-
-<table>
-    <tr>
-        <th>Time</th>
-        <th>In</th>
-        <th>Out</th>
-    </tr>
-    <% t = Time.now.beginning_of_day %>
-    <% (24 * 60).times do |i| %>
-        <% key = (t + i.minutes).strftime("%H:%M") %>
-        <tr>
-            <td><%= key %></td>
-            <td><%= @arrivals[key] %></td>
-            <td><%= @departures[key] %></td>
-        </tr>
-    <% end %>
-</table>
