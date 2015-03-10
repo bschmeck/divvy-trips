@@ -6,7 +6,9 @@ Flow for Divvy station #<%= @station.divvy_id %> at <%= @station.name %>.
         <th>In</th>
         <th>Out</th>
     </tr>
-    <% (@departures.keys + @arrivals.keys).uniq.sort.each do |key| %>
+    <% t = Time.now.beginning_of_day %>
+    <% (24 * 60).times do |i| %>
+        <% key = (t + i.minutes).strftime("%H:%M") %>
         <tr>
             <td><%= key %></td>
             <td><%= @arrivals[key] %></td>
