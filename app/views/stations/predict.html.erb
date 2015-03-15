@@ -1,0 +1,32 @@
+<p>
+Live status for <%= @station.name %>
+<br>
+<br>
+<ul>
+    <li><%= @status.total_docks %> Total Docks</li>
+    <li><%= @status.available_docks %> Available Docks</li>
+    <li><%= @status.available_bikes %> Available Bikes</li>
+</ul>
+</p>
+
+<p>
+Starting at <%= @basis_date.strftime("%Y-%m-%d %H:%M")%>
+Based upon <%= @n_days %> days of data:
+    <br>
+    <table>
+        <tr>
+            <th>Time</th>
+            <th>Arrivals</th>
+            <th>Departures</th>
+            <th>Net</th>
+        </tr>
+        <% 0.step(120, 10) do |delta| %>
+            <tr>
+                <td><%= (@basis_date + (delta + 10).minutes).strftime("%-I:%M%P") %></td>
+                <td><%= @arrival_hash[delta] %></td>
+                <td><%= @departure_hash[delta] %></td>
+                <td><%= @arrival_hash[delta] - @departure_hash[delta] %></td>
+            </tr>
+        <% end %>
+    </table>
+</p>
